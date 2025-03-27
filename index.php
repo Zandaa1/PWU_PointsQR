@@ -11,10 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
             background-image: url(pwu_bg.jpg);
@@ -72,13 +69,13 @@
     
         <p class="animate__animated animate__fadeIn">Welcome to</p>
         
-        <img src="pwu_logo.png" width="75px" alt="">
+        <img src="pwu_logo.png" width="75px" alt="" class="animate__animated animate__fadeInDown">
 
         <h1 class="animate__animated animate__zoomIn">PWU Points Tracker</h1>
         
         
         <div class="button-container">
-            <a href="login_revamped.php" class="btn btn-danger">
+            <a href="login_revamped.php" class="btn btn-danger animate__animated animate__pulse animate__infinite">
                 Guest Login
             </a>
         </div>

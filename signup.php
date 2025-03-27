@@ -2,25 +2,31 @@
 include("config.php");
 session_start();
 $error = '';
+$success = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($link, $_POST['username']);
     $password = mysqli_real_escape_string($link, $_POST['password']);
+    $confirm_password = mysqli_real_escape_string($link, $_POST['confirm_password']);
 
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($link, $sql);
-    $count = mysqli_num_rows($result);
-
-    if ($count == 1) {
-        $row = mysqli_fetch_assoc($result);
-        $_SESSION['login_user'] = $username;
-        $_SESSION['role'] = $row['role'];
-        $_SESSION['id'] = $row['id'];
-
-        header("location: student_dashboard.php");
-        exit();
+    if ($password !== $confirm_password) {
+        $error = "Passwords do not match!";
     } else {
-        $error = "Invalid login. Try again!";
+        $sql_check = "SELECT * FROM users WHERE username = '$username'";
+        $result_check = mysqli_query($link, $sql_check);
+
+        if (mysqli_num_rows($result_check) > 0) {
+            $error = "Username already exists!";
+        } else {
+            // Store the password as plain text (not recommended)
+            $sql_insert = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+
+            if (mysqli_query($link, $sql_insert)) {
+                $success = "Account created successfully! You can now <a href='login_revamped.php'>login</a>.";
+            } else {
+                $error = "Error creating account. Please try again.";
+            }
+        }
     }
 }
 ?>
@@ -31,23 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width = device-width,initial-scale=1.0">
-    <title>PWU Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWU Signup</title>
     <link rel="stylesheet" href="Design.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <script type="module" src="login.js" defer></script>
-
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
-
+        /* Reuse the same styles from login_revamped.php */
         body {
             display: flex;
             justify-content: center;
@@ -66,7 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #fff;
             border-radius: 10px;
             padding: 30px 40px;
-
         }
 
         .wrapper h1 {
@@ -105,27 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 20px;
         }
 
-        .wrapper .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14.5px;
-            margin: -15px 0 15px;
-        }
-
-        .remember-forgot label input {
-            accent-color: #fff;
-            margin-right: 3px;
-        }
-
-        .remember-forgot a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .remember-forgot a:hover {
-            text-decoration: underline;
-        }
-
         .wrapper .btn {
             width: 100%;
             height: 45px;
@@ -140,79 +114,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-weight: 600;
         }
 
-        .wrapper .register-link {
+        .wrapper .login-link {
             font-size: 14.5px;
             text-align: center;
             margin-top: 20px 0 15px;
         }
 
-        .register-link p a {
+        .login-link p a {
             color: #fff;
             text-decoration: none;
             font-weight: 600;
         }
 
-        .register-link p a:hover {
+        .login-link p a:hover {
             text-decoration: underline;
         }
-
-        @media (max-width: 480px) {
-            .wrapper {
-                width: 90%;
-                padding: 20px;
-            }
-
-            .wrapper h1 {
-                font-size: 28px;
-            }
-
-            .input-box input {
-                font-size: 14px;
-                padding: 10px 40px 10px 15px;
-            }
-
-            .input-box i {
-                font-size: 18px;
-                right: 15px;
-            }
-
-            .wrapper .btn {
-                height: 40px;
-                font-size: 14px;
-            }
-
-            .wrapper .register-link,
-            .remember-forgot {
-                font-size: 12px;
-            }
-        }
     </style>
-
 </head>
 
 <body>
     <div class="wrapper">
-
-    
         <form method="POST" action="">
-            <h1>Login</h1>
+            <h1>Signup</h1>
             <div class="input-box">
                 <input type="text" placeholder="Username" name="username" id="username" required>
                 <i class='bx bxs-user'></i>
             </div>
 
-            <div class="input-box"> <input type="password" name="password" placeholder="Password" id="password" required>
+            <div class="input-box">
+                <input type="password" placeholder="Password" name="password" id="password" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
-            <button
-                id="submit"
-                type="submit"
-                name="login"
-                class="btn">Login</button>
+            <div class="input-box">
+                <input type="password" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
 
-            <div class="register-link">
-                <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+            <button id="submit" type="submit" name="signup" class="btn">Signup</button>
+
+            <div class="login-link">
+                <p>Already have an account? <a href="login_revamped.php">Login</a></p>
             </div>
         </form>
 
@@ -222,6 +164,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         <?php } ?>
 
+        <?php if ($success) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $success; ?>
+            </div>
+        <?php } ?>
     </div>
 </body>
 
