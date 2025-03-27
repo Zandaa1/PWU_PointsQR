@@ -155,6 +155,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .register-link p a:hover {
             text-decoration: underline;
         }
+
+        @media (max-width: 480px) {
+            .wrapper {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .wrapper h1 {
+                font-size: 28px;
+            }
+
+            .input-box input {
+                font-size: 14px;
+                padding: 10px 40px 10px 15px;
+            }
+
+            .input-box i {
+                font-size: 18px;
+                right: 15px;
+            }
+
+            .wrapper .btn {
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .wrapper .register-link,
+            .remember-forgot {
+                font-size: 12px;
+            }
+        }
     </style>
 
 </head>
@@ -176,11 +207,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="#">Forgot password?</a>
             </div>
 
-            <button 
-            id="submit" 
-            type="submit"
-            name="login" 
-            class="btn">Login</button>
+            <button
+                id="submit"
+                type="submit"
+                name="login"
+                class="btn">Login</button>
 
             <div class="register-link">
                 <p>Don't have an account? <a href="#">Sign up</a></p>
@@ -188,10 +219,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <?php if ($error) { ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $error; ?>
-                </div>
-            <?php } ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $error; ?>
+            </div>
+        <?php } ?>
 
     </div>
 </body>
