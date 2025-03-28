@@ -1,7 +1,6 @@
 <?php
 include('session.php');
 include("config.php");
-session_start();
 $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,12 +10,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $points = mysqli_real_escape_string($link, $_POST['points']);
     $expiration_time = mysqli_real_escape_string($link, $_POST['expiration_time']);
 
-    // Insert the new QR code into the database
-    $sql = "INSERT INTO qr_codes (unique_text, booth_name, description, points, expiration_time) VALUES ('$unique_text', '$booth_name', '$description', '$points', '$expiration_time')";
-    if (mysqli_query($link, $sql)) {
-        $success_message = "QR Code created successfully!";
+    // Check for duplicate unique_text
+    $check_sql = "SELECT * FROM qr_codes WHERE unique_text = '$unique_text'";
+    $result = mysqli_query($link, $check_sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $error = "Error: A QR code with this unique text already exists.";
     } else {
-        $error = "Error: " . $sql . "<br>" . mysqli_error($link);
+        // Insert the new QR code into the database
+        $sql = "INSERT INTO qr_codes (unique_text, booth_name, description, points, expiration_time) VALUES ('$unique_text', '$booth_name', '$description', '$points', '$expiration_time')";
+        if (mysqli_query($link, $sql)) {
+            $success_message = "QR Code created successfully!";
+        } else {
+            $error = "Error: " . $sql . "<br>" . mysqli_error($link);
+        }
     }
 }
 ?>

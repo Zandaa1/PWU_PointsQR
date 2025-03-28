@@ -75,7 +75,7 @@
 
 
         <div class="button-container">
-            <a href="login_revamped.php" class="btn btn-danger animate__animated animate__pulse animate__infinite">
+            <a href="login_revamped.php" class="btn btn-danger">
                 Guest Login
             </a>
         </div>

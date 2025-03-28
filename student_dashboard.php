@@ -26,6 +26,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
             background-image: url(img/pwu_bg.jpg);
@@ -91,8 +92,8 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
 </head>
 <body>
     <div class="container main-page">
-        <img src="img/pwu_logo.png" width="75px" alt="" srcset="">
-        <h1>PWU Points Dashboard</h1>
+        <img class="animate__animated animate__fadeInDown" src="img/pwu_logo.png" width="75px" alt="" srcset="">
+        <h1 class="animate__animated animate__fadeIn">PWU Points Dashboard</h1>
         <?php if (isset($_GET['message'])): ?>
             <div class="alert alert-info">
                 <?php echo htmlspecialchars($_GET['message']); ?>
@@ -101,7 +102,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
         <div class="button-container">
             <!-- Redesigned Points Display -->
             <div class="points-display">
-                <p><?php echo $current_points; ?> <span>Points</span></p>
+                <p><?php echo $current_points; ?> Points</p>
             </div>
             <a href="scan_qr_code.php" class="btn btn-danger">Scan QR Code</a>
             <a href="history_tracker.php" class="btn btn-danger">History Tracker</a>
