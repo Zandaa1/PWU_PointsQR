@@ -29,7 +29,7 @@ $result = mysqli_query($link, $sql);
         rel="stylesheet">
     <style>
         body {
-            background-image: url(pwu_bg.jpg);
+            background-image: url(img/pwu_bg.jpg);
             background-size: cover;
             background-position: center;
             margin: 0;

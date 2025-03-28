@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: url('pwu_bg.jpg') no-repeat;
+            background: url('img/pwu_bg.jpg') no-repeat;
             background-size: cover;
             background-position: center;
         }

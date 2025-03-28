@@ -73,7 +73,7 @@ $current_points = $row['points'] ? $row['points'] : 0;
         rel="stylesheet">
     <style>
         body {
-            background-image: url(pwu_bg.jpg);
+            background-image: url(img/pwu_bg.jpg);
             background-size: cover;
             background-position: center;
             margin: 0;

@@ -28,7 +28,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
         rel="stylesheet">
     <style>
         body {
-            background-image: url(pwu_bg.jpg);
+            background-image: url(img/pwu_bg.jpg);
             background-size: cover;
             background-position: center;
             margin: 0;

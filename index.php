@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
-            background-image: url(pwu_bg.jpg);
+            background-image: url(img/pwu_bg.jpg);
             background-size: cover;
             background-position: center;
             margin: 0;
