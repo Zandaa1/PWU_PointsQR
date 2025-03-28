@@ -166,6 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 <?php } ?>
             </div>
+            <small style="color: white;">Have issues? Visit our claim booth for assistance.</small>
         </div>
     </div>
 

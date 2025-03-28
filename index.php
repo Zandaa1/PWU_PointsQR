@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="img/pwu_logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PWU Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -55,7 +56,6 @@
             width: 100%;
             margin-bottom: 10px;
         }
-
     </style>
 
 
@@ -66,14 +66,14 @@
 
     <div class="container main-page">
 
-    
+
         <p class="animate__animated animate__fadeIn">Welcome to</p>
-        
+
         <img src="pwu_logo.png" width="75px" alt="" class="animate__animated animate__fadeInDown">
 
         <h1 class="animate__animated animate__zoomIn">PWU Points Tracker</h1>
-        
-        
+
+
         <div class="button-container">
             <a href="login_revamped.php" class="btn btn-danger animate__animated animate__pulse animate__infinite">
                 Guest Login
