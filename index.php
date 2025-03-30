@@ -69,7 +69,7 @@
 
         <p class="animate__animated animate__fadeIn">Welcome to</p>
 
-        <img src="pwu_logo.png" width="75px" alt="" class="animate__animated animate__fadeInDown">
+        <img src="img/pwu_logo.png" width="75px" alt="" class="animate__animated animate__fadeInDown animate__delay-1s">
 
         <h1 class="animate__animated animate__zoomIn">PWU Points Tracker</h1>
 

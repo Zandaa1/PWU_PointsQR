@@ -105,7 +105,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
                 <p><?php echo $current_points; ?> Points</p>
             </div>
             <a href="scan_qr_code.php" class="btn btn-danger">Scan QR Code</a>
-            <a href="history_tracker.php" class="btn btn-danger">History Tracker</a>
+            <a href="historytracker.php" class="btn btn-danger">History Tracker</a>
             <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#claimPointsModal">Claim Points</a>
             <?php if ($is_admin): ?>
                 <a href="create_qr_code.php" class="btn btn-danger">! Create QR Code !</a>
