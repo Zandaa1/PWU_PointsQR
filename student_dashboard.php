@@ -40,7 +40,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
             align-items: center;
         }
 
-        h1, p {
+        h1, h3, p {
             color: white;
             text-align: center;
             margin: 0;
@@ -93,7 +93,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
 <body>
     <div class="container main-page">
         <img class="animate__animated animate__fadeInDown" src="img/pwu_logo.png" width="75px" alt="" srcset="">
-        <h1 class="animate__animated animate__fadeIn">PWU Points Dashboard</h1>
+        <h3 class="animate__animated animate__fadeIn">PWU Points Dashboard</h3>
         <?php if (isset($_GET['message'])): ?>
             <div class="alert alert-info">
                 <?php echo htmlspecialchars($_GET['message']); ?>
