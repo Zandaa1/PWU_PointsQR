@@ -120,9 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="expiration_time" class="form-label">Expiration Time</label>
                         <input type="datetime-local" class="form-control" id="expiration_time" name="expiration_time" required>
                     </div>
-                    <div class="alert alert-warning">
-                        Please save the QR code image before clicking "Create QR Code."
-                    </div>
+                   
                     <button type="submit" class="btn btn-danger" name="create">Create QR Code</button>
                     <?php if ($error) { ?>
                         <div class="alert alert-danger" role="alert">
@@ -144,6 +142,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-md-6">
                 <div id="q" class="qr-container"></div>
                 <p class="text-white mt-3">Right-click on the QR code to save it.</p>
+                <div class="alert alert-warning">
+                        Please save the QR code image before clicking "Create QR Code."
+                    </div>
             </div>
         </div>
     </div>

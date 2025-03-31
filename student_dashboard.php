@@ -105,16 +105,18 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
                 <p><?php echo $current_points; ?> Points</p>
             </div>
             <a href="scan_qr_code.php" class="btn btn-danger">Scan QR Code</a>
-            <a href="historytracker.php" class="btn btn-danger">History Tracker</a>
-            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#claimPointsModal">Claim Points</a>
+            <a href="historytracker.php" class="btn btn-danger">History & Claim Points</a>
+           <!-- <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#claimPointsModal">Claim Points</a> !-->
             <?php if ($is_admin): ?>
-                <a href="create_qr_code.php" class="btn btn-danger">! Create QR Code !</a>
+                <p>Your account is has admin access!</p>
+                <a href="create_qr_code.php" class="btn btn-danger">Create QR Code</a>
+                <a href="view_qr_codes.php" class="btn btn-danger">View All QR Codes</a>
             <?php endif; ?>
             <a href="index.php" class="btn btn-light btn-sm" style="margin-top: 20px;">Logout</a>
         </div>
     </div>
 
-    <!-- Bootstrap Modal -->
+    <!-- Bootstrap Modal  
     <div class="modal fade" id="claimPointsModal" tabindex="-1" aria-labelledby="claimPointsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -136,7 +138,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
             </div>
         </div>
     </div>
-
+-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
