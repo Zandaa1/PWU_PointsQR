@@ -105,7 +105,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
                 <p><?php echo $current_points; ?> Points</p>
             </div>
             <a href="scan_qr_code.php" class="btn btn-danger">Scan QR Code</a>
-            <a href="historytracker.php" class="btn btn-danger">History & Claim Points</a>
+            <a href="claiming.php" class="btn btn-danger">History & Claim Points</a>
            <!-- <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#claimPointsModal">Claim Points</a> !-->
             <?php if ($is_admin): ?>
                 <p>Your account is has admin access!</p>
