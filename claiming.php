@@ -38,7 +38,7 @@ if(isset($_POST['submit_claim'])) {
             $claim_success = "Reward claimed successfully!";
             
             // Redirect to refresh the page and prevent resubmission
-            header("Location: historytracker.php?claimed=success");
+            header("Location: claiming.php?claimed=success");
             exit();
         } else {
             $claim_error = "Error recording your claim. Please try again.";

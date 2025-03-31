@@ -42,7 +42,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <style>
-        /* Reuse the same styles from login_revamped.php */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
         body {
             display: flex;
             justify-content: center;
@@ -127,6 +135,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .login-link p a:hover {
             text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .wrapper {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .wrapper h1 {
+                font-size: 28px;
+            }
+
+            .input-box input {
+                font-size: 14px;
+                padding: 10px 40px 10px 15px;
+            }
+
+            .input-box i {
+                font-size: 18px;
+                right: 15px;
+            }
+
+            .wrapper .btn {
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .wrapper .login-link {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
