@@ -7,10 +7,10 @@ include('config.php');
 $user_id = $_SESSION['id'];
 
 // Process claim submission if form was submitted
-if(isset($_POST['submit_claim'])) {
+if (isset($_POST['submit_claim'])) {
     $claim_description = mysqli_real_escape_string($link, $_POST['claim_description']);
     $points_claimed = abs(mysqli_real_escape_string($link, $_POST['points_claimed'])) * -1; // Convert to negative
-    
+
     // Check if user has enough points
     $check_points_sql = "SELECT points FROM users WHERE id = ?";
     $stmt_check = mysqli_prepare($link, $check_points_sql);
@@ -18,8 +18,8 @@ if(isset($_POST['submit_claim'])) {
     mysqli_stmt_execute($stmt_check);
     $result_check = mysqli_stmt_get_result($stmt_check);
     $user_data = mysqli_fetch_assoc($result_check);
-    
-    if($user_data['points'] + $points_claimed < 0) {
+
+    if ($user_data['points'] + $points_claimed < 0) {
         $claim_error = "Not enough points to claim this reward.";
     } else {
         // Insert into scan_history with negative points value
@@ -27,16 +27,16 @@ if(isset($_POST['submit_claim'])) {
                        VALUES (?, ?, ?)";
         $stmt_insert = mysqli_prepare($link, $insert_sql);
         mysqli_stmt_bind_param($stmt_insert, "ids", $user_id, $points_claimed, $claim_description);
-        
-        if(mysqli_stmt_execute($stmt_insert)) {
+
+        if (mysqli_stmt_execute($stmt_insert)) {
             // Update user's total points
             $update_sql = "UPDATE users SET points = points + ? WHERE id = ?";
             $stmt_update = mysqli_prepare($link, $update_sql);
             mysqli_stmt_bind_param($stmt_update, "di", $points_claimed, $user_id);
             mysqli_stmt_execute($stmt_update);
-            
+
             $claim_success = "Reward claimed successfully!";
-            
+
             // Redirect to refresh the page and prevent resubmission
             header("Location: claiming.php?claimed=success");
             exit();
@@ -90,6 +90,7 @@ $current_points = $user_current['points'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,17 +100,24 @@ $current_points = $user_current['points'];
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        
-        h1, h2, p, th {
+        h1,
+        p,
+        th {
             font-family: Montserrat;
+            color: white;
+        }
+
+        h2 {
+            font-family: Montserrat;
+            font-weight: 800;
             color: white;
         }
 
         :root {
             --pwu-maroon: #800000;
-            --pwu-gold:rgb(255, 255, 255);
+            --pwu-gold: rgb(255, 255, 255);
         }
-        
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-image: url('img/pwu_bg.jpg');
@@ -120,13 +128,13 @@ $current_points = $user_current['points'];
             color: white;
             padding: 20px 0;
         }
-        
+
         .page-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 15px;
         }
-        
+
         .card {
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
@@ -135,13 +143,13 @@ $current_points = $user_current['points'];
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             overflow: hidden;
         }
-        
+
         .card-header {
             background-color: rgba(128, 0, 0, 0.7);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             padding: 15px 20px;
         }
-        
+
         .points-summary {
             background-color: rgba(255, 255, 255, 0.49);
             border-radius: 10px;
@@ -149,49 +157,49 @@ $current_points = $user_current['points'];
             margin-bottom: 20px;
             text-align: center;
         }
-        
+
         .points-value {
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--pwu-gold);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
-        
+
         .table {
             color: white;
             border-color: rgba(255, 255, 255, 0.2);
         }
-        
+
         .table thead th {
             background-color: rgb(167, 39, 39);
             border-color: rgba(255, 255, 255, 0.2);
             position: sticky;
             top: 0;
         }
-        
+
         .table-responsive {
             max-height: 60vh;
             overflow-y: auto;
         }
-        
+
         .back-btn {
             position: absolute;
             top: 20px;
             left: 20px;
             z-index: 100;
         }
-        
+
         .empty-state {
             text-align: center;
             padding: 40px 20px;
         }
-        
+
         .empty-state i {
             font-size: 3rem;
             margin-bottom: 15px;
             color: rgba(255, 255, 255, 0.5);
         }
-        
+
         .claim-form {
             background-color: maroon;
             border-radius: 10px;
@@ -199,36 +207,37 @@ $current_points = $user_current['points'];
             margin-top: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .claim-form h5 {
             color: white;
             margin-bottom: 15px;
         }
-        
+
         .points-negative {
             color: #ff6b6b !important;
         }
-        
+
         @media (max-width: 768px) {
             .card-header h2 {
                 font-size: 1.5rem;
             }
-            
+
             .points-value {
                 font-size: 2rem;
             }
-            
+
             .table {
                 font-size: 0.85rem;
             }
         }
     </style>
 </head>
+
 <body>
     <a href="student_dashboard.php" class="btn btn-light back-btn">
         <i class="bi bi-arrow-left"></i> Back
     </a>
-    
+
     <div class="page-container">
         <div class="card">
             <div class="card-header">
@@ -243,34 +252,34 @@ $current_points = $user_current['points'];
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Claim Form -->
                 <div class="claim-form">
                     <h5><i class="bi bi-gift"></i> Claim a Reward</h5>
-                    
-                    <?php if(isset($claim_error)): ?>
+
+                    <?php if (isset($claim_error)): ?>
                         <div class="alert alert-danger"><?php echo $claim_error; ?></div>
                     <?php endif; ?>
-                    
-                    <?php if(isset($_GET['claimed']) && $_GET['claimed'] == 'success'): ?>
+
+                    <?php if (isset($_GET['claimed']) && $_GET['claimed'] == 'success'): ?>
                         <div class="alert alert-success">Reward claimed successfully! <br> Make sure you claimed your prize on the booth counter!</div>
                     <?php endif; ?>
-                    
+
                     <form method="post" action="">
                         <div class="mb-3">
                             <label for="claim_description" class="form-label" style="color:white;">Reward Description</label>
-                            <input type="text" class="form-control" id="claim_description" name="claim_description" 
-                                   placeholder="e.g., T-shirt, Food Voucher, etc." required>
+                            <input type="text" class="form-control" id="claim_description" name="claim_description"
+                                placeholder="e.g., T-shirt, Food Voucher, etc." required>
                         </div>
                         <div class="mb-3">
                             <label for="points_claimed" class="form-label" style="color:white;">Points to Redeem</label>
-                            <input type="number" class="form-control" id="points_claimed" name="points_claimed" 
-                                   min="1" max="<?php echo $current_points; ?>" required>
+                            <input type="number" class="form-control" id="points_claimed" name="points_claimed"
+                                min="1" max="<?php echo $current_points; ?>" required>
                         </div>
                         <button type="submit" name="submit_claim" class="btn btn-warning">Claim Reward</button>
                     </form>
                 </div>
-                
+
                 <?php if (count($history_records) > 0): ?>
                     <div class="table-responsive mt-4">
                         <table class="table table-hover">
@@ -309,4 +318,5 @@ $current_points = $user_current['points'];
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -15,6 +15,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="img/pwu_logo.png">
@@ -26,7 +27,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
             background-image: url(img/pwu_bg.jpg);
@@ -40,7 +41,9 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
             align-items: center;
         }
 
-        h1, h3, p {
+        h1,
+        h3,
+        p {
             color: white;
             text-align: center;
             margin: 0;
@@ -79,17 +82,19 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
         .points-display p {
             font-size: 1.8em;
             font-weight: bold;
-            color: white; /* Gold color for points */
+            color: white;
+            /* Gold color for points */
             margin: 0;
         }
 
         .points-display span {
             font-size: 1.2em;
             color: white;
-            
+
         }
     </style>
 </head>
+
 <body>
     <div class="container main-page">
         <img class="animate__animated animate__fadeInDown" src="img/pwu_logo.png" width="75px" alt="" srcset="">
@@ -106,7 +111,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
             </div>
             <a href="scan_qr_code.php" class="btn btn-danger">Scan QR Code</a>
             <a href="claiming.php" class="btn btn-danger">History & Claim Points</a>
-           <!-- <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#claimPointsModal">Claim Points</a> !-->
+            <!-- <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#claimPointsModal">Claim Points</a> !-->
             <?php if ($is_admin): ?>
                 <p>Your account is has admin access!</p>
                 <a href="create_qr_code.php" class="btn btn-danger">Create QR Code</a>
@@ -143,4 +148,5 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
