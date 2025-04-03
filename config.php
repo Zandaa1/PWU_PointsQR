@@ -10,10 +10,14 @@ if ($is_localhost) {
     define('DB_NAME', 'dbqrscan');
 } else {
     // Hosting provider settings
-    define('DB_SERVER', 'sql306.infinityfree.com'); // Replace with your hosting DB server
-    define('DB_USERNAME', 'if0_38622671'); // Replace with your hosting DB username
-    define('DB_PASSWORD', 'ko4peitdWr'); // Replace with your hosting DB password
-    define('DB_NAME', 'if0_38622671_dbqrscan'); // Replace with your hosting DB name
+    //define('DB_SERVER', 'sql306.infinityfree.com'); // Replace with your hosting DB server
+    //define('DB_USERNAME', 'if0_38622671'); // Replace with your hosting DB username
+    //define('DB_PASSWORD', 'ko4peitdWr'); // Replace with your hosting DB password
+    //define('DB_NAME', 'if0_38622671_dbqrscan'); // Replace with your hosting DB name
+    define('DB_SERVER', 'localhost');
+    define('DB_USERNAME', 'root');
+    define('DB_PASSWORD', '');
+    define('DB_NAME', 'dbqrscan');
 }
 
 /* Attempt to connect to MySQL database */
