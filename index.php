@@ -6,6 +6,7 @@
     <link rel="icon" type="image/png" href="img/pwu_logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PWU Points Tracker BETA</title>
+    <link rel="manifest" crossorigin="use-credentials" href="manifest.json" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/philfung/add-to-homescreen@3.2/dist/add-to-homescreen.min.css" />
