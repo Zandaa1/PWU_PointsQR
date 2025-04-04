@@ -1,6 +1,6 @@
 {
     "short_name": "PWU Points App",
-    "name": "PWU Points App (add to homescreen)",
+    "name": "PWU Points App - Points Wallet",
     "display": "standalone",
     "id": "/?source=pwa",
     "start_url": "/?source=pwa",
