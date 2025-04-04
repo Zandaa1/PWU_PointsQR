@@ -116,6 +116,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
                 <p>Your account is has admin access!</p>
                 <a href="create_qr_code.php" class="btn btn-danger">Create QR Code</a>
                 <a href="view_qr_codes.php" class="btn btn-danger">View All QR Codes</a>
+                <a href="view_users.php" class="btn btn-danger">View All Users</a>
             <?php endif; ?>
             <a href="index.php" class="btn btn-light btn-sm" style="margin-top: 20px;">Logout</a>
         </div>
