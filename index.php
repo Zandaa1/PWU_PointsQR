@@ -78,7 +78,7 @@
         <p class="animate__animated animate__fadeIn">Welcome to</p>
 
         <h1 class="animate__animated animate__zoomIn">PWU Points Tracker</h1>
-
+  
 
         <div class="button-container">
             <a href="login_revamped.php" class="btn btn-danger">

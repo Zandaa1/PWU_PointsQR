@@ -161,6 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div id="qr-reader"></div>
             <div id="qr-reader-results">
                 <?php if ($scan_result) { ?>
+                    <br>
                     <div class="alert alert-info" role="alert">
                         <?php echo $scan_result; ?>
                     </div>

@@ -8,6 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($link, $_POST['username']);
     $password = mysqli_real_escape_string($link, $_POST['password']);
     $confirm_password = mysqli_real_escape_string($link, $_POST['confirm_password']);
+    $name = mysqli_real_escape_string($link, $_POST['name']);
+    $email = mysqli_real_escape_string($link, $_POST['email']);
 
     if ($password !== $confirm_password) {
         $error = "Passwords do not match!";
@@ -19,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Username already exists!";
         } else {
             // Store the password as plain text (not recommended)
-            $sql_insert = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+            // Store the password as plain text (not recommended for security reasons)
+            $sql_insert = "INSERT INTO users (username, password, name, email) VALUES ('$username', '$password', '$name', '$email')";
 
             if (mysqli_query($link, $sql_insert)) {
                 $success = "Account created successfully! You can now <a href='login_revamped.php'>login</a>.";
@@ -173,6 +176,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="wrapper">
         <form method="POST" action="">
             <h1>Signup</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Name" name="name" id="name" required>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="email" placeholder="Email" name="email" id="email" required>
+                <i class='bx bxs-envelope'></i>
+            </div>
+
             <div class="input-box">
                 <input type="text" placeholder="Username" name="username" id="username" required>
                 <i class='bx bxs-user'></i>
